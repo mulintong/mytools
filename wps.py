@@ -39,7 +39,7 @@ def delete_wps_disk():
 
 if __name__ == "__main__":
     try:
-        # For example C:\Program Files (x86)\WPS Office\11.1.0.7720
+        # For example C:\Program Files (x86)\WPS Office\11.1.0.7764
         wps_install_path = find_wps_install_path()
 
         if os.path.exists(wps_install_path):
@@ -50,6 +50,7 @@ if __name__ == "__main__":
 
         # Kill related processes
         os.system("taskkill /F /IM wpsoffice.exe")
+        os.system("taskkill /F /IM wps.exe")
          # qingbangong.dll loaded in explorer.exe
         os.system("taskkill /F /IM explorer.exe")
 
