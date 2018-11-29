@@ -51,6 +51,7 @@ if __name__ == "__main__":
         # Kill related processes
         os.system("taskkill /F /IM wpsoffice.exe")
         os.system("taskkill /F /IM wps.exe")
+        os.system("taskkill /F /IM wpscenter.exe")
          # qingbangong.dll loaded in explorer.exe
         os.system("taskkill /F /IM explorer.exe")
 
@@ -59,6 +60,7 @@ if __name__ == "__main__":
         # Truncate file and make it readonly
         junk_files = [
             "office6\\addons\\qing\\qingbangong.dll",
+            "office6\\wpscenter.exe",
             "office6\\wpscloudlaunch.exe",
             "office6\\wpscloudsvrimp.dll",
             "wtoolex\\desktoptip.exe",
