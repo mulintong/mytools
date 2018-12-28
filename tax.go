@@ -25,7 +25,7 @@ import (
 func main() {
 	if len(os.Args) != 4 {
 		fmt.Println("使用方法：输入 3 个参数并以空格分开，分别是 税前收入 五险一金 专项扣除额度")
-		fmt.Println("如 tax.exe 30000 4500 2000")
+		fmt.Println("如 ./tax 30000 4500 2000")
 		return
 	}
 
