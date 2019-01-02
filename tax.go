@@ -64,12 +64,12 @@ func main() {
 			curMonthTax = curMonthTax*0.45 - 181920 - totalTax
 		}
 
-		fmt.Printf("%2d 月缴税 %.2f\n", i, curMonthTax)
+		fmt.Printf("%02d 月缴税 %8.2f，实发 %8.2f\n", i, curMonthTax, float32(personalIncome)-curMonthTax)
 
 		totalTax += curMonthTax
 	}
 
 	fmt.Println("--------------------------------------------------------")
-	fmt.Printf("共缴税    %.2f\n", totalTax)
+	fmt.Printf(" 共缴税 %.2f, 共实发 %.2f\n", totalTax, float32(personalIncome)*12-totalTax)
 	fmt.Println("--------------------------------------------------------")
 }
