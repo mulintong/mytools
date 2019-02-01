@@ -29,24 +29,26 @@ func main() {
 		return
 	}
 
-	const EXEMPTION int = 5000 // 免征额
+	convStr2Float32 := func(arg string) float32 {
+		var val float64
+		val, _ = strconv.ParseFloat(arg, 32)
+		return float32(val)
+	}
 
-	var personalIncome int   // 税前收入
-	var socialSecurity int   // 五险一金
-	var specialDeduction int // 专项扣除
+	const EXEMPTION float32 = 5000.0 // 免征额
 
-	personalIncome, _ = strconv.Atoi(os.Args[1])
-	socialSecurity, _ = strconv.Atoi(os.Args[2])
-	specialDeduction, _ = strconv.Atoi(os.Args[3])
+	var individualIncome = convStr2Float32(os.Args[1]) // 税前收入
+	var socialSecurity = convStr2Float32(os.Args[2])   // 五险一金
+	var specialDeduction = convStr2Float32(os.Args[3]) // 专项扣除
 
 	fmt.Println("--------------------------------------------------------")
-	fmt.Printf("税前收入：%d, 五险一金：%d, 专项扣除：%d\n", personalIncome, socialSecurity, specialDeduction)
+	fmt.Printf("税前收入：%.2f, 五险一金：%.2f, 专项扣除：%.2f\n", individualIncome, socialSecurity, specialDeduction)
 	fmt.Println("--------------------------------------------------------")
 
 	var curMonthTax, totalTax float32 // 上一个月预扣
 
 	for i := 1; i <= 12; i++ {
-		curMonthTax = float32((personalIncome - EXEMPTION - socialSecurity - specialDeduction) * i)
+		curMonthTax = (individualIncome - EXEMPTION - socialSecurity - specialDeduction) * float32(i)
 
 		if curMonthTax < 36000 {
 			curMonthTax = curMonthTax*0.03 - 0 - totalTax
@@ -64,12 +66,12 @@ func main() {
 			curMonthTax = curMonthTax*0.45 - 181920 - totalTax
 		}
 
-		fmt.Printf("%02d 月缴税 %8.2f，实发 %8.2f\n", i, curMonthTax, float32(personalIncome)-curMonthTax)
+		fmt.Printf("%02d 月缴税 %8.2f，实发 %8.2f\n", i, curMonthTax, individualIncome-curMonthTax-socialSecurity)
 
 		totalTax += curMonthTax
 	}
 
 	fmt.Println("--------------------------------------------------------")
-	fmt.Printf(" 共缴税 %.2f, 共实发 %.2f\n", totalTax, float32(personalIncome)*12-totalTax)
+	fmt.Printf(" 共缴税 %.2f, 共实发 %.2f\n", totalTax, individualIncome*12-totalTax-12*socialSecurity)
 	fmt.Println("--------------------------------------------------------")
 }
