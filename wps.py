@@ -68,6 +68,9 @@ if __name__ == "__main__":
         # Truncate file and make it readonly
         junk_files = [
             "office6\\addons\\qing\\qingbangong.dll",
+            "office6\\addons\\messagecenter\\messagecenter.dll",
+            "office6\\addons\\kusercenter\\kusercenter.dll",
+            "office6\\addons\\kdocerpage\\kdocerpage.dll",
             "office6\\wpscenter.exe",
             "office6\\wpscloudlaunch.exe",
             "office6\\wpscloudsvr.exe",
