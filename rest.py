@@ -15,5 +15,5 @@ rest_min = 45
 print("休息提醒启动：将会每%d分钟提醒一次" % (rest_min))
 
 while True:
-    time.sleep(rest_min * 10)
+    time.sleep(rest_min * 60)
     ret = tkinter.messagebox.showinfo("提醒", "休息时间到！")
