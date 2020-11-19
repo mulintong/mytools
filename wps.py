@@ -7,9 +7,13 @@ import winreg
 global wps_install_path
 
 def find_wps_install_path():
-    key = winreg.OpenKey(winreg.HKEY_CURRENT_USER, "Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Kingsoft Office")
-    install_path = winreg.QueryValueEx(key, "LocationRoot")[0]
-    return install_path
+    try:
+        key = winreg.OpenKey(winreg.HKEY_CURRENT_USER, "Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Kingsoft Office")
+        install_path = winreg.QueryValueEx(key, "LocationRoot")[0]
+        return install_path
+    except OSError as e:
+        print("exception: ", e)
+        return ""
 
 def assemble_file(f):
     global wps_install_path
